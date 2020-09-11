@@ -1,0 +1,74 @@
+<nav class="main-navbar">
+  <div class="nav-wrapper brand-blue">
+    <div class="brand-logo">
+      <img src="https://tigoid-cdn.tigocloud.net/v2/r05/page/skin/default/images/logo.png?v=1" class="logo">
+    </div>
+    <ul class="left">
+      <a id="id_back_arrow" style="" href="javascript: history.back(); window.close();">
+        <i class="material-icons light-blue-text"></i>
+      </a>
+    </ul>
+  </div>
+</nav>
+
+<div class="fonts">
+  <br>
+  <div class="content-body">
+    <section class="flexbox-container">
+      <div class="col-15 d-flex align-items-center justify-content-center">
+        <div class="col-lg-4 col-sm-8 col-md-6 col-11 col-xl-3 box-shadow-2 p-0">
+          <div class="card border-grey border-lighten-3 px-0 py-0 m-0"
+            style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);">
+            <div class="title">
+              <br>
+              <div class="text-center">
+                <p>
+                  Te enviamos un <br>código al
+                </p>
+                <p class="telephone">
+                  +504 {{this.data}}
+                </p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <form [formGroup]="validations_form" #form="ngForm" (ngSubmit)="validate(form)">
+                  <div class="container">
+                    <div class="description">
+                      <label>Te enviamos este código por tu <br>seguridad, para verificar que nadie use tu línea sin tu
+                        permiso</label>
+                    </div>
+                    <br>
+                    <div class="row">
+                      <div class="col-3">
+                      </div>
+                      <div class="col-6">
+                        <mat-form-field class="example-form">
+                          <input type="text" matInput id="codeOtp" [(ngModel)]="codeOtp"
+                            formControlName="codeOtp" required maxlength="6"
+                            (ngModelChange)="loginFormValidator.codeOtp.empty='';"
+                            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                          <mat-hint>Ingresa acá tu código</mat-hint>
+                        </mat-form-field>
+                      </div>
+                      <div class="col-3">
+                      </div>
+                    </div>
+                    <br>
+                    <div class="buttonSend">
+                      <button mat-button [disabled]="!validations_form.valid" type="submit">Enviar</button>
+                    </div>
+                    <br>
+                    <div class="sendNew">
+                      <label style=" color: #00377D;">¿No recibiste el código? </label> <label style=" color: #00C8FF; margin-left: 0.5rem;  cursor: pointer;" (click)="sendAgain()"> Enviar de nuevo</label>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

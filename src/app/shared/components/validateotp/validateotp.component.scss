@@ -1,0 +1,142 @@
+.fonts {
+  line-height: 1.5;
+  font-family: 'lato', 'arial', sans-serif;
+  color: #565656;
+  background-color: #eee !important;
+}
+
+nav {
+  color: #fff;
+  background-color: #00377b;
+  width: 100%;
+  height: 64px;
+  line-height: 64px;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+nav .nav-wrapper {
+  position: relative;
+  height: 100%;
+}
+
+.brand-blue {
+  background-color: #00377b;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+}
+
+nav .brand-logo {
+  left: 50px;
+  transform: initial;
+}
+
+nav .brand-logo {
+  margin-left: 4.6rem;
+}
+
+.logo {
+  width: 4.4rem;
+  height: 3.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.wrapper {
+  width: 200px;
+  padding: 20px;
+  height: 150px;
+}
+
+.example-form {
+  min-width: 100px;
+  max-width: 500px;
+  width: 100%;
+  font-family: 'lato', 'arial', sans-serif;
+  text-justify: center;
+  text-align: center;
+  color: #00377D;
+}
+
+.buttonSend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+button {
+  font-size: 1.5rem !important;
+  width: 10rem;
+  background-color: #00C8FF;
+  color: #00377D;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.1rem;
+  font-family: 'lato', 'arial', sans-serif;
+  outline: none;
+}
+
+button:hover {
+  font-size: 1.5rem !important;
+  width: 10rem;
+  background-color: #198AFD;
+  color: #00377D;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+  border-radius: 0.1rem;
+  font-family: 'lato', 'arial', sans-serif;
+  outline: none;
+
+}
+
+button:disabled,
+button[disabled]{
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+  background-color: #DCDCDC;
+  color: #565656;
+}
+
+.title {
+  font-size: 1.9rem !important;
+  color: #00377D;
+}
+
+.input-icon {
+  margin-left: 0.2rem;
+}
+
+input{
+  text-justify: center;
+  text-align: center;
+  font-size: 1.9rem;
+}
+
+.description {
+  color: #565656;
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 1.3rem;
+  text-justify: center;
+  text-align: center;
+}
+
+.codeFields {
+  color: #565656;
+  font-family: 'lato', 'arial', sans-serif;
+  font-size: 1rem;
+  text-justify: center;
+  text-align: center;
+}
+
+::ng-deep .mat-hint{
+  width:100% !important;
+  text-align:center !important;
+  margin-left: 8px;
+  font-size: 1rem;
+  color: #00377D;
+}
+
+.telephone{
+  color: #00377D;
+  font-weight: 600;
+}
+
+.sendNew {
+  text-justify: center;
+  text-align: center;
+}

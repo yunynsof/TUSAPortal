@@ -1,0 +1,104 @@
+<nav class="main-navbar">
+  <div class="nav-wrapper brand-blue">
+    <div class="brand-logo">
+      <img src="https://tigoid-cdn.tigocloud.net/v2/r05/page/skin/default/images/logo.png?v=1" class="logo">
+    </div>
+   <!--  <ul class="left">
+      <a id="id_back_arrow" style="" href="javascript: history.back(); window.close();">
+        <i class="material-icons light-blue-text"></i>
+      </a>
+    </ul> -->
+  </div>
+</nav>
+
+<div class="fonts">
+  <br>
+  <div class="content-body">
+    <section class="flexbox-container">
+      <div class="col-15 d-flex align-items-center justify-content-center">
+        <div class="col-lg-4 col-sm-8 col-md-6 col-10 col-xl-3 box-shadow-2 p-0">
+          <div class="card border-grey border-lighten-3 px-0 py-0 m-0"
+            style="box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);">
+            <div class="title">
+              <br>
+              <div class="text-center">
+                <p>
+                  Ayúdanos a identificar<br>tu número móvil Tigo
+                </p>
+              </div>
+            </div>
+            <div class="card-content">
+              <div class="card-body">
+                <form [formGroup]="validations_form" #form="ngForm" (ngSubmit)="generate(form)">
+                  <div class="container">
+                    <div class="row">
+                      <div class="col-0">
+                        <img matPrefix class="input-icon" src="./assets/icon/testB.png"
+                          style="width: 18px; height: 28px; margin-top: 0.9rem; margin-left: 0.3rem;">
+                      </div>
+                      <div class="col-11">
+                        <mat-form-field class="example-form">
+                          <mat-label>Código país</mat-label>
+                          <mat-select [(value)]="selectedCountry">
+                            <mat-select-trigger>
+                              <span><i class="honduras flag"></i>Honduras (+504)</span>
+                            </mat-select-trigger>
+                            <mat-option value="honduras"><i class="honduras flag"></i> Honduras (+504)</mat-option>
+                            <mat-option disabled value="nicaragua"><i class="nicaragua flag"></i> Nicaragua (+505)
+                            </mat-option>
+                            <mat-option disabled value="costa rica"><i class="costa rica flag"></i> Costa Rica (+506)
+                            </mat-option>
+                            <mat-option disabled value="el salvador"><i class="el salvador flag"></i> El Salvador (+503)
+                            </mat-option>
+                            <mat-option disabled value="guatemala"><i class="guatemala flag"></i> Guatemala (+502)
+                            </mat-option>
+                            <mat-option disabled value="colombia"><i class="colombia flag"></i> Colombia (+57)
+                            </mat-option>
+                          </mat-select>
+                        </mat-form-field>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-0">
+                        <img matPrefix class="input-icon" src="./assets/icon/testA.png"
+                          style="width: 18px; height: 28px; margin-top: 0.9rem; margin-left: 0.3rem;">
+                      </div>
+                      <div class="col-11">
+                        <mat-form-field class="example-form" [floatLabel]="floatLabelControl.value">
+                          <mat-label>Tu número de teléfono</mat-label>
+                          <input type="text" matInput id="telephoneTigo" placeholder="Ej. 90000000"
+                            [(ngModel)]="telephoneTigo" formControlName="telephoneTigo" name="telephoneTigo" required
+                            maxlength="8" (ngModelChange)="loginFormValidator.telephoneTigo.empty='';"
+                            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                        </mat-form-field>
+                        <div class="validation-errors">
+                          <ng-container *ngFor="let validation of validation_messages.telephoneTigo">
+                            <div class="error-message"
+                              *ngIf="loginFormValidator.telephoneTigo.empty || validations_form.get('telephoneTigo').hasError(validation.type) && (validations_form.get('telephoneTigo').dirty || validations_form.get('telephoneTigo').touched)">
+                              <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-circle"
+                                fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                  d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                <path
+                                  d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                              </svg> {{ validation.message }}
+                            </div>
+                          </ng-container>
+                        </div>
+                      </div>
+                    </div>
+                    <br>
+                    <div class="buttonSend">
+                      <button mat-button [disabled]="!validations_form.valid" type="submit">Continuar</button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+</div>

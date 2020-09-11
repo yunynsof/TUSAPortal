@@ -1,1 +1,215 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  background-color: #eee !important;
+  font-family: "lato", "arial", sans-serif;
+  color: #565656;
+  font-size: 0.8rem !important;
+}
+@font-face {
+  font-family: "lato";
+  src: url("./assets/fonts/Cronos Pro/Cronos Pro - Regular.TTF");
+}
+
+.mat-form-field-appearance-legacy.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label:not(.mat-empty):not(.mat-form-field-empty) {
+  color: #00377d !important;
+  font-size: 1.4rem;
+  font-family: "lato", "arial", sans-serif;
+}
+.mat-form-field-empty.mat-form-field-label {
+  color: #00377d !important;
+  font-family: "lato", "arial", sans-serif;
+  font-size: 1.3rem;
+}
+
+.mat-form-field-underline {
+  background-color: #00c8ff !important;
+  width: 133.33333%;
+  font-family: "lato", "arial", sans-serif;
+}
+
+.mat-focused .mat-form-field-label {
+  /*change color of label*/
+  color: #00377d !important;
+  font-family: "lato", "arial", sans-serif;
+  font-size: 1.3rem;
+}
+
+.mat-form-field-ripple {
+  /*change color of underline when focused*/
+  background-color: #00c8ff !important;
+  font-family: "lato", "arial", sans-serif;
+}
+
+.error-message {
+  color: #f01e46;
+  font-size: 10.5px;
+  margin-bottom: 1rem;
+}
+
+mat-select {
+  font-family: "lato", "arial", sans-serif !important;
+  text-justify: center;
+  text-align: center;
+}
+
+mat-option {
+  font-family: "lato", "arial", sans-serif !important;
+}
+
+.swal-title {
+  margin: 0px;
+  margin-bottom: 28px;
+  font-family: "lato", "arial", sans-serif !important;
+}
+
+.swal-text {
+  color: #565656;
+  padding: 17px;
+  display: block;
+  margin: 22px;
+  text-align: center;
+  font-size: 18px;
+  font-family: "lato", "arial", sans-serif !important;
+}
+
+.swal-footer {
+  background-color: #eee !important;
+  margin-top: 32px;
+  border-top: 1px solid #e9eef1;
+  overflow: hidden;
+}
+
+.swal-button {
+  padding: 7px 19px;
+  border-radius: 0.1rem;
+  background-color: #00c8ff;
+  color: #00377d !important;
+  font-size: 12px;
+  font-family: "lato", "arial", sans-serif !important;
+}
+
+nav .brand-logo {
+  position: absolute;
+  color: #fff;
+  display: inline-block;
+  font-size: 2.1rem;
+  padding: 0;
+  white-space: nowrap;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ul:not(.browser-default) {
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.left {
+  float: left !important;
+}
+
+nav ul {
+  margin: 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+ul {
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 40px;
+}
+
+nav ul a {
+  transition: background-color 0.3s;
+  font-size: 1rem;
+  color: #fff;
+  display: block;
+  padding: 0 15px;
+  cursor: pointer;
+}
+
+a {
+  text-decoration: none;
+}
+
+a {
+  color: #039be5;
+  text-decoration: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+a {
+  background-color: transparent;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+@media only screen and (min-width: 601px) {
+  nav,
+  nav .nav-wrapper i,
+  nav a.button-collapse,
+  nav a.button-collapse i {
+    height: 64px;
+    line-height: 64px;
+  }
+}
+
+nav i,
+nav [class^="mdi-"],
+nav [class*="mdi-"],
+nav i.material-icons {
+  display: block;
+  font-size: 24px;
+  height: 64px;
+  line-height: 64px;
+}
+
+.material-icons {
+  text-rendering: optimizeLegibility;
+  font-feature-settings: "liga";
+}
+
+.light-blue-text {
+  color: #44c8f5 !important;
+}
+
+.material-icons {
+  font-family: "Material Icons";
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  display: inline-block;
+  line-height: 1;
+  text-transform: none;
+  letter-spacing: normal;
+  word-wrap: normal;
+  white-space: nowrap;
+  direction: ltr;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "liga";
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
