@@ -8,7 +8,7 @@ import swal from 'sweetalert';
 })
 export class ServicesService {
 
-  URL_SERVER: string = 'http://192.168.159.13:7004/WSSenderTigoUSA';
+  URL_SERVER: string = 'https://api.tigo.com.hn/WSSenderTigoUSA';
   authSubject = new BehaviorSubject(false);
 
   constructor(
