@@ -5,7 +5,7 @@
     </div>
     <ul class="left">
       <a id="id_back_arrow" href="javascript: history.back(); window.close();">
-        <i class="material-icons light-blue-text"></i>
+        <i class="material-icons light-blue-text" (click)="back()"></i>
       </a>
     </ul>
   </div>
@@ -60,8 +60,8 @@
                           <div class="col">
                             <mat-form-field class="example-form2">
                               <mat-label>Código país</mat-label>
-                              <mat-select [(ngModel)]="selectedCountry" placeholder="Seleccione" (ngModelChange)="obtainNameIcon()"
-                                formControlName="selectedCountry">
+                              <mat-select [(ngModel)]="selectedCountry" placeholder="Seleccione"
+                                (ngModelChange)="obtainNameIcon()" formControlName="selectedCountry">
                                 <mat-select-trigger>
                                   <span><i class="{{nameIcon}} flag"></i>{{selectedCountry}}</span>
                                 </mat-select-trigger>
@@ -85,15 +85,33 @@
                             </div>
                           </div>
                           <div class="col">
-                            <mat-form-field class="example-form3"  [floatLabel]="floatLabelControl.value">
+                            <!-- <mat-form-field class="example-form3"  [floatLabel]="floatLabelControl.value">
                               <mat-label>Código área</mat-label>
                               <mat-select [(ngModel)]="selectedArea" placeholder="Seleccione" (ngModelChange)="obtainTelephoneComplete()"
                                 (selectionChange)="loginFormValidator.selectedArea.empty='';"
-                                formControlName="selectedArea">
-                                <mat-option *ngFor="let area of listArea" [value]="area.id">{{area.areaCode}}
+                                formControlName="selectedArea" #select1>
+                                <mat-select-filter [placeholder]="'Filtrar'"[noResultsMessage]="'Sin resultados'" *ngIf="select1.focused" [displayMember]="'areaCode'" [array]="listArea" (filteredReturn)="filteredList5 =$event"></mat-select-filter>
+                                <mat-option *ngFor="let area of filteredList5" [value]="area.id">{{area.areaCode}}
                                 </mat-option>
                               </mat-select>
+                            </mat-form-field> -->
+
+
+                            <mat-form-field class="example-form3">
+                              <mat-label>Código área</mat-label>
+                              <input matInput placeholder="Seleccione" [matAutocomplete]="auto"
+                                [formControl]="floatLabelControl" [(ngModel)]="selectedArea"
+                                (ngModelChange)="obtainTelephoneComplete()"
+                                (selectionChange)="loginFormValidator.selectedArea.empty='';"
+                                formControlName="selectedArea" required maxlength="3"
+                                oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                              <mat-autocomplete #auto="matAutocomplete">
+                                <mat-option *ngFor="let state of filteredStates | async" [value]="state.areaCode">
+                                  {{state.areaCode}}
+                                </mat-option>
+                              </mat-autocomplete>
                             </mat-form-field>
+
                             <div class="validation-errors">
                               <ng-container *ngFor="let validation of validation_messages.selectedArea">
                                 <div class="error-message"
@@ -105,6 +123,20 @@
                                     <path
                                       d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
                                   </svg> {{ validation.message }}
+                                </div>
+                              </ng-container>
+                            </div>
+
+                            <div class="validation-errors" *ngIf="areaValidate">
+                              <ng-container>
+                                <div class="error-message">
+                                  <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-exclamation-circle"
+                                    fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                                    <path fill-rule="evenodd"
+                                      d="M8 15A7 7 0 1 0 8 1a7 7 0 0 0 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
+                                    <path
+                                      d="M7.002 11a1 1 0 1 1 2 0 1 1 0 0 1-2 0zM7.1 4.995a.905.905 0 1 1 1.8 0l-.35 3.507a.552.552 0 0 1-1.1 0L7.1 4.995z" />
+                                  </svg> Código invalido.
                                 </div>
                               </ng-container>
                             </div>
@@ -171,8 +203,12 @@
                         </mat-form-field>
                       </div>
                     </div>
-                    <div class="buttonSend">
+                    <div class="buttonSend" *ngIf="!areaValidate">
                       <button mat-button [disabled]="!validations_form.valid" type="submit">Enviar</button>
+                    </div>
+
+                    <div class="buttonSend" *ngIf="areaValidate">
+                      <button mat-button [disabled]="areaValidate" type="submit">Enviar</button>
                     </div>
 
                   </div>

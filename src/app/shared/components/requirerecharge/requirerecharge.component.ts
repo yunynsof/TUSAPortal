@@ -4,6 +4,15 @@ import { FormBuilder, Validators, FormGroup, FormControl, NgForm } from '@angula
 import { Router } from '@angular/router';
 import validator from 'validator';
 import swal from 'sweetalert';
+import { Observable } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
+export interface State {
+
+  id: string;
+  areaCode: string;
+}
+
 
 declare var $;
 @Component({
@@ -25,6 +34,7 @@ export class RequirerechargeComponent implements OnInit {
   dataCountry: any = [];
   listArea: any = [];
   dataArea: any = [];
+  filteredList5;
 
 
   constructor(
@@ -45,7 +55,15 @@ export class RequirerechargeComponent implements OnInit {
 
   @ViewChild('form', { static: false }) form: NgForm;
   validations_form: FormGroup;
-  floatLabelControl = new FormControl('always');
+  floatLabelControl = new FormControl();
+  filteredStates: Observable<State[]>;
+
+  states: State[] = [
+    {
+      id: '1',
+      areaCode: '2',
+    }
+  ];
 
   ngOnInit(): void {
 
@@ -93,8 +111,6 @@ export class RequirerechargeComponent implements OnInit {
     });
     this.validateFieldsForm();
   }
-
-
   require(form) {
     if (this.formValidator()) {
       let telephoneUSAComplete = this.selectedCountry.toString() + this.selectedArea.toString() + this.telephoneUSA.toString();
@@ -171,7 +187,19 @@ export class RequirerechargeComponent implements OnInit {
             areaCode: this.dataArea.list[i].areaCode
           });
         }
+        this.filteredList5 = this.listArea.slice();
+        this.filteredStates = this.floatLabelControl.valueChanges
+          .pipe(
+            startWith(''),
+            map(state => state ? this._filterStates(state) : this.listArea.slice())
+          );
       });
+  }
+
+  private _filterStates(value: string): State[] {
+    const filterValue = value.toLowerCase();
+
+    return this.listArea.filter(state => state.areaCode.toLowerCase().indexOf(filterValue) === 0);
   }
 
 
@@ -185,12 +213,28 @@ export class RequirerechargeComponent implements OnInit {
     this.loginFormValidator.selectedCountry.empty = '';
   }
 
+  areaValidate = false;
+  buttonValidate = true;
+
   obtainTelephoneComplete() {
 
     if (this.telephoneUSA != undefined && this.selectedCountry != undefined && this.selectedArea != undefined) {
-      this.telephoneComplete = '+' + this.selectedCountry + ' (' + this.selectedArea + ') ' + this.telephoneUSA;
-      this.sms = 'Hola, me quede sin saldo, puedes enviarme una recarga desde USA? Ingresa a este link :  https://micuenta.tigo.com.hn/comprar-inter/'
-      this.rows = 4;
+      if (this.selectedArea > 99 && this.selectedArea < 1000) {
+        this.areaValidate = false;
+        for (let a = 0; a < this.listArea.length; a++) {
+          if (this.listArea[a].areaCode == this.selectedArea) {
+            this.telephoneComplete = '+' + this.selectedCountry + ' (' + this.selectedArea + ') ' + this.telephoneUSA;
+            this.sms = 'Hola, me quede sin saldo, puedes enviarme una recarga desde USA? Ingresa a este link :  https://micuenta.tigo.com.hn/comprar-inter/'
+            this.rows = 4;
+            this.areaValidate = false;
+            break;
+          } else {
+            this.areaValidate = true;
+          }
+        }
+      } else {
+        this.areaValidate = true;
+      }
     }
   }
 
@@ -198,10 +242,11 @@ export class RequirerechargeComponent implements OnInit {
   validateFieldsForm() {
     let tigoRegex: RegExp = /^[0-9]{8,8}$/
     let usaRegex: RegExp = /^[0-9]{7,7}$/
+    let areaRegex: RegExp = /^[0-9]{3,3}$/
     this.validations_form = this.formBuilder.group({
       'telephoneTigo': [null, [Validators.pattern(tigoRegex), Validators.required]],
       'selectedCountry': [null, [Validators.required]],
-      'selectedArea': [null, [Validators.required]],
+      'selectedArea': [null, [Validators.pattern(areaRegex), Validators.required]],
       'telephoneUSA': [null, [Validators.pattern(usaRegex), Validators.required]],
       'telephoneComplete': [null, [Validators.required]],
       'sms': [null, [Validators.required]]
@@ -319,5 +364,8 @@ export class RequirerechargeComponent implements OnInit {
 
   enableForm() {
     this.validations_form.enable();
+  }
+  back(){
+    localStorage.removeItem('idTigo')
   }
 }

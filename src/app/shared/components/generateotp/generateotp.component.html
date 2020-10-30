@@ -3,7 +3,7 @@
     <div class="brand-logo">
       <img src="https://tigoid-cdn.tigocloud.net/v2/r05/page/skin/default/images/logo.png?v=1" class="logo">
     </div>
-   <!--  <ul class="left">
+    <!--  <ul class="left">
       <a id="id_back_arrow" style="" href="javascript: history.back(); window.close();">
         <i class="material-icons light-blue-text"></i>
       </a>
@@ -64,12 +64,14 @@
                           style="width: 18px; height: 28px; margin-top: 0.9rem; margin-left: 0.3rem;">
                       </div>
                       <div class="col-11">
+
                         <mat-form-field class="example-form" [floatLabel]="floatLabelControl.value">
                           <mat-label>Tu número de teléfono</mat-label>
                           <input type="text" matInput id="telephoneTigo" placeholder="Ej. 90000000"
                             [(ngModel)]="telephoneTigo" formControlName="telephoneTigo" name="telephoneTigo" required
                             maxlength="8" (ngModelChange)="loginFormValidator.telephoneTigo.empty='';"
-                            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            (keyup.enter)="generate(form)">
                         </mat-form-field>
                         <div class="validation-errors">
                           <ng-container *ngFor="let validation of validation_messages.telephoneTigo">
@@ -91,7 +93,6 @@
                     <div class="buttonSend">
                       <button mat-button [disabled]="!validations_form.valid" type="submit">Continuar</button>
                     </div>
-
                   </div>
                 </form>
               </div>

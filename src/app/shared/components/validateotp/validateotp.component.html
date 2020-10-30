@@ -47,7 +47,8 @@
                           <input type="text" matInput id="codeOtp" [(ngModel)]="codeOtp"
                             formControlName="codeOtp" required maxlength="6"
                             (ngModelChange)="loginFormValidator.codeOtp.empty='';"
-                            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);">
+                            oninput="if(this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            (keyup.enter)="validate(form)">
                           <mat-hint>Ingresa acá tu código</mat-hint>
                         </mat-form-field>
                       </div>
