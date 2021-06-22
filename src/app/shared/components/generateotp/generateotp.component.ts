@@ -58,7 +58,7 @@ export class GenerateotpComponent implements OnInit {
 
           if (test2.code == 4) {
             this.serviceService.getCount(form.value.telephoneTigo).then(data => {
-              this.serviceService.generateOTP(504 + form.value.telephoneTigo).subscribe(
+              this.serviceService.generateOTP(form.value.telephoneTigo).subscribe(
                 data => {
 
                   let navigationExtras: NavigationExtras = {
@@ -72,7 +72,7 @@ export class GenerateotpComponent implements OnInit {
               );
             }
             );
-          }
+          }else {swal("Lo sentimos", "Su linea debe ser prepago para disfrutar de este srvicio." + "\n" + "Intente nuevamente", "warning");}
         });
     }
   }

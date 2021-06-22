@@ -55,7 +55,7 @@ export class ValidateotpComponent implements OnInit {
   validate(form) {
     if (this.formValidator()) {
 
-      this.serviceService.validateOTP(504 + this.data, form.value.codeOtp).then(
+      this.serviceService.validateOTP(this.data, form.value.codeOtp).then(
         data => {
 
           let test = JSON.stringify(data)
@@ -65,10 +65,7 @@ export class ValidateotpComponent implements OnInit {
             localStorage.setItem('idTigo', this.data);
             this.router.navigate(['requirerecharge']);
 
-          } else if (test2.action == 'OTP Incorrecto') {
-            swal("Lo sentimos", "El código ingresado no es el correcto" + "\n" + "Intente nuevamente", "warning");
-          }
-
+          } 
         });
     }
   }

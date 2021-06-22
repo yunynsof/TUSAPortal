@@ -77,32 +77,20 @@ export class ServicesService {
 
   generateOTP(telTigo) {
     const headers = new HttpHeaders({
-      'Content-Type': 'application/json',
-      'apikey': 'FiJ8As2XYo9VmuTvxvnTYCHuCAM3SBNH'
+      'Content-Type': 'application/json'
     });
-
-    let otp = {
-      text: "El codigo de seguridad que solicitaste es {token}. Personal de TIGO NUNCA solicitara tu codigo, es confidencial y personal. No lo compartas con otra persona.",
-      token: {
-        length: 6,
-        type: "numeric",
-        ttl: 300
-      }
-    };
-
-    return this.httpClient.post(`https://cors-anywhere.herokuapp.com/https://id.tigo.com/tigoid/pub/v2/country/HN/phone/${telTigo}/otp`, otp, { headers });
+    return this.httpClient.post(`http://192.168.159.13:7004/mobile/tigo/hn/otp/create/msisdn/${telTigo}/consumer/24`,{headers});
   }
 
   validateOTP(telTigo, code) {
-    const headers = new HttpHeaders({
-      'apikey': 'FiJ8As2XYo9VmuTvxvnTYCHuCAM3SBNH'
-    });
-
+ 
     return new Promise(resolve => {
-      this.httpClient.get(`https://cors-anywhere.herokuapp.com/https://id.tigo.com/tigoid/pub/v2/country/HN/phone/${telTigo}/otp/${code}`, { headers }).subscribe(data => {
+      this.httpClient.get(`http://192.168.159.13:7004/mobile/tigo/hn/otp/validate/msisdn/${telTigo}/otp/${code}/consumer/24`).subscribe(data => {
         resolve(data);
-      }, err => {
-
+      }, err => { 
+		 if (err.error.error.text == 'OTP Incorrecto') {
+            swal("Lo sentimos", "El código ingresado no es el correcto" + "\n" + "Intente nuevamente", "warning");
+          }else swal("Lo sentimos", "Ha ocurrido un error" + "\n" + "Intente nuevamente o genere un nuevo código", "warning");
       });
     });
   }
